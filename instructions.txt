@@ -1,0 +1,5 @@
+1. first create a repo on github, for example cc150
+2. on local machine, you can first use "git init" to initialize the repo
+3. then "git pull https://github.com/rebbit/cc150.git" to sync with the remote server (this needs your account & passwd on github"
+4. run "git push", you should be able to connect your local reposotory to your github repository now.
+5. have fun!
