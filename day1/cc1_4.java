@@ -17,16 +17,40 @@ class cc1_4 {
 	    break;
 	default:
 	    String replacedStr = "";
-	    replacedStr = replaceSpaces(args[0]);
+	    int length = args[0].length();
+	    char[] strArray = new char[length * 3];
+	    for (int i = 0; i < length; i++) {
+		strArray[i] = new Character(args[0].charAt(i));
+	    }
+	    replaceSpaces(strArray, length);
 	    System.out.println("string before replacement: " + args[0]);
-	    System.out.println("string after replacement: " + replacedStr);
+	    System.out.println("string after replacement: " + (new String(strArray)));
 	    System.out.println();
 	    break;
 	}
     }
 
-    public static String replaceSpaces(String str) {
-	return "test";
+    public static void replaceSpaces(char[] strArray, int length) {
+	// 1. first scan the string and get the counts of spaces inside
+	int counter = 0;
+	for (char c : strArray) {
+	    if (c == ' ') counter++;
+	}
+	// 2. then increase the length of the char array by 2 * counter
+	int newLength = length + 2 * counter;
+	strArray[newLength] = '\0';
+	// 3. copy over the replaced character backwards
+	for (int i = length - 1; i >= 0; i--) {
+	    if (strArray[i] == ' ') {
+		strArray[newLength - 1] = '0';
+		strArray[newLength - 2] = '2';
+		strArray[newLength - 3] = '%';
+		newLength = newLength - 3;
+	    } else {
+		strArray[newLength - 1] = strArray[i];
+		newLength = newLength - 1;
+	    }
+	}
     }
 
 
